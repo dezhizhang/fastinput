@@ -14,6 +14,9 @@ PROCESSED_DATA_DIR = ROOT_DIR / 'data' / 'processed'
 # 数据模型
 MODELS_DIR = ROOT_DIR / 'models'
 
+SEQ_LEN = 5
+
+
 # 日志目录
 LOGS_DIR = ROOT_DIR / 'logs'
 
