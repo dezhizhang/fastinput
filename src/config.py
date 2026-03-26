@@ -11,6 +11,9 @@ RAW_DATA_DIR = ROOT_DIR / 'data' / 'raw'
 # 数据预处理目录
 PROCESSED_DATA_DIR = ROOT_DIR / 'data' / 'processed'
 
+# 数据模型
+MODELS_DIR = ROOT_DIR / 'models'
+
 # 日志目录
 LOGS_DIR = ROOT_DIR / 'logs'
 
