@@ -15,6 +15,9 @@ PROCESSED_DATA_DIR = ROOT_DIR / 'data' / 'processed'
 MODELS_DIR = ROOT_DIR / 'models'
 
 SEQ_LEN = 5
+BATCH_SIZE=64
+EMBEDDING_DIM=128
+HIDDEN_SIZE=256
 
 
 # 日志目录
