@@ -25,6 +25,8 @@ class FastInputModel(nn.Module):
 
         output = self.linear(last_hidden_state)
 
+        return output
+
 
 
 
