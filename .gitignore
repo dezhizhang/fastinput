@@ -76,6 +76,7 @@ dmypy.json
 # Logs
 *.log
 data/*
+logs/*
 
 # dotenv
 .env

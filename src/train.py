@@ -2,6 +2,7 @@ import torch
 from dataset import get_dataloader
 from model import FastInputModel
 import config
+import time
 from tqdm import tqdm
 from torch.utils.tensorboard import SummaryWriter
 
@@ -61,7 +62,7 @@ def train():
     optimizer = torch.optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
 
 
-    writer = SummaryWriter(log_dir=config.LOGS_DIR)
+    writer = SummaryWriter(log_dir=config.LOGS_DIR / time.strftime("%Y-%m-%d-%H-%M-%S"))
 
     # 开始训练
     best_loss = float("inf")
@@ -78,7 +79,8 @@ def train():
         # 保存模型
         if loss < best_loss:
             best_loss = loss
-            torch.save(model.state_dict())
+            torch.save(model.state_dict(), config.MODELS_DIR / f"model-{epoch}.pth")
+            print(f"模型保存成功")
 
 
     writer.close()
