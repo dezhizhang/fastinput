@@ -1,10 +1,9 @@
 import torch
-from torch._C.cpp import nn
-
 from dataset import get_dataloader
 from model import FastInputModel
 import config
 from tqdm import tqdm
+from torch.utils.tensorboard import SummaryWriter
 
 
 def train_one_epoch(model, dataloader, loss_fn, optimizer, device):
@@ -52,8 +51,6 @@ def train():
     with open(config.MODELS_DIR / 'vocab.txt', "r", encoding="utf-8") as f:
         vocab_list = [line.strip() for line in f.readlines()]
 
-    print(vocab_list[0:10])
-
     # 4. 准备模型
     model = FastInputModel(vocab_size=len(vocab_list))
 
@@ -63,12 +60,35 @@ def train():
     # 6. 优化器
     optimizer = torch.optim.Adam(model.parameters(), lr=config.LEARNING_RATE)
 
+
+    writer = SummaryWriter(log_dir=config.LOGS_DIR)
+
     # 开始训练
+    best_loss = float("inf")
+
     for epoch in range(config.EPOCHS):
         print("=" * 10, f"EPOCH {epoch}", "=" * 10)
 
         loss = train_one_epoch(model, dataloader, loss_fn, optimizer, device)
-        print(f"loss:{loss}")
+        # print(f"loss:{loss}")
+
+        # 记录训练结果
+        writer.add_scalar("loss", loss, epoch)
+
+        # 保存模型
+        if loss < best_loss:
+            best_loss = loss
+            torch.save(model.state_dict())
+
+
+    writer.close()
+
+    # 保存模型
+
+
+
+
+
 
 
 if __name__ == '__main__':
