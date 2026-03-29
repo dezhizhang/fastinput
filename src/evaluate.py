@@ -4,6 +4,26 @@ from  model import FastInputModel
 from src.dataset import get_dataloader
 
 
+def evaluate(model, test_dataloader, device):
+    """模型评估逻辑"""
+    model.eval()
+
+    with torch.no_grad():
+
+        for inputs,targets in test_dataloader:
+            inputs = inputs.to(device)
+            targets = targets.to(device)
+
+
+            output = model(inputs)
+
+
+
+
+
+
+
+
 def run_evaluate():
     """模型评估"""
     # 1. 确定设备
