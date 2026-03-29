@@ -15,8 +15,6 @@ def predict(text,model,word2index,index2word,device):
 
     input_tensor = input_tensor.to(device)
 
-
-
     # 预测逻辑
     model.eval()
     with torch.no_grad():
@@ -60,11 +58,7 @@ def run_predict():
 
         token5 = predict(user_input,model,word2index,index2word,device)
 
-
         print(token5)
-
-
-
 
 
 if __name__ == "__main__":
