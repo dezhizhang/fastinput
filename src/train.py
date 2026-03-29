@@ -68,7 +68,6 @@ def train():
     best_loss = float("inf")
 
     for epoch in range(config.EPOCHS):
-        print("=" * 10, f"EPOCH {epoch}", "=" * 10)
 
         loss = train_one_epoch(model, dataloader, loss_fn, optimizer, device)
         # print(f"loss:{loss}")
@@ -79,19 +78,11 @@ def train():
         # 保存模型
         if loss < best_loss:
             best_loss = loss
-            torch.save(model.state_dict(), config.MODELS_DIR / f"model-{epoch}.pth")
+            torch.save(model.state_dict(), config.MODELS_DIR / 'best.pth')
             print(f"模型保存成功")
 
 
     writer.close()
-
-    # 保存模型
-
-
-
-
-
-
 
 if __name__ == '__main__':
     train()

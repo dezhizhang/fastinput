@@ -46,6 +46,12 @@ def predict(text):
     return top5_token
 
 
+def run_predict():
+    while True:
+        user_input = input(">")
+
+
+
 if __name__ == "__main__":
     top_tokens = predict("我们团队")
 
